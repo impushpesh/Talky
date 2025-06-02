@@ -1,16 +1,18 @@
 import { Server } from "socket.io";
 import http from "http";
 import express from "express";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 const server = http.createServer(app);
 
-const allowedOrigins = [
-  "http://localhost:5173"
-];
+const allowedOrigins = ["http://localhost:5173"];
 
-if (process.env.NODE_ENV === "production") {
-  allowedOrigins.push("https://frontend-on-render.com");  // Replace with your frontend URL
+// Add CLIENT_URL from .env if it exists
+if (process.env.CLIENT_URL) {
+  allowedOrigins.push(process.env.CLIENT_URL);
 }
 
 const io = new Server(server, {
@@ -20,12 +22,11 @@ const io = new Server(server, {
   },
 });
 
-
 export function getReceiverSocketId(userId) {
   return userSocketMap[userId];
 }
 
-const userSocketMap = {}; 
+const userSocketMap = {};
 
 io.on("connection", (socket) => {
   console.log("A user connected", socket.id);
