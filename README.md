@@ -2,6 +2,8 @@
 
 Talky is a real-time chat application built on the MERN (MongoDB, Express, React, Node.js) stack. It allows users to chat with each other seamlessly, leveraging Socket.IO for real-time communication.
 
+#### Check out the live project here: [Talky](https://talky-1.onrender.com)
+
 ## Features
 
 - Real-time messaging
