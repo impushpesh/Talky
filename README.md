@@ -4,6 +4,12 @@ Talky is a real-time chat application built on the MERN (MongoDB, Express, React
 
 #### Check out the live project here: [Talky](https://talky-1.onrender.com)
 
+## Branches
+
+- **master**: Contains the deployed production-ready code that is live on the server.
+- **main**: Contains the local development version of the code for running on your local machine.
+
+
 ## Features
 
 - Real-time messaging
