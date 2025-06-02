@@ -19,9 +19,17 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(cookieParser());
 
+const allowedOrigins = [
+  "http://localhost:5173"
+];
+
+if (process.env.NODE_ENV === "production") {
+  allowedOrigins.push("https://frontend-on-render.com");  //TODO: Add render frontend site
+}
+
 app.use(cors({
-    origin: "http://localhost:5173",
-    credentials: true
+  origin: allowedOrigins,
+  credentials: true,
 }));
 
 app.use('/api/auth', authRoutes)

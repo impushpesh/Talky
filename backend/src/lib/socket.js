@@ -5,11 +5,21 @@ import express from "express";
 const app = express();
 const server = http.createServer(app);
 
+const allowedOrigins = [
+  "http://localhost:5173"
+];
+
+if (process.env.NODE_ENV === "production") {
+  allowedOrigins.push("https://frontend-on-render.com");  // Replace with your frontend URL
+}
+
 const io = new Server(server, {
   cors: {
-    origin: ["http://localhost:5173"],
+    origin: allowedOrigins,
+    credentials: true,
   },
 });
+
 
 export function getReceiverSocketId(userId) {
   return userSocketMap[userId];
